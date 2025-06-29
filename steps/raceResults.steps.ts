@@ -14,7 +14,7 @@ Given('I open the BBC Sport homepage', async () => {
 });
 
 When('I navigate to the {string} Formula 1 results page', async (year: string) => {
-  //await page.getByRole('link', { name: 'Formula 1' }).click();
+
   await page.locator('.ssrcss-1u47p8g-LinkTextContainer.eis6szr1', { hasText: 'Formula 1' }).click();
   await page.waitForURL('**/formula1');
 
@@ -40,5 +40,5 @@ Then('I should see Sergio Perez in 3rd place', async () => {
   const row = await page.locator('tr', { hasText: 'Sergio Perez' }).first().innerText();
   expect(row).toMatch(/3\s+Sergio Perez/);
 
-  await browser.close(); // Clean up
+  await browser.close();
 });

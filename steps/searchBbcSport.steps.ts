@@ -12,22 +12,19 @@ Given('I navigate to the BBC Sport homepage', async () => {
 });
 
 When('I search for {string}', async (searchTerm: string) => {
-  // Click on the search icon
+  
   await page.locator('.ssrcss-1rstd29-SearchText.eki2hvo12').click();
 
-  // Type into the search input
   const searchInput = page.locator('.ssrcss-9pm56o-StyledInput.e1ld3nu72');
   await searchInput.fill(searchTerm);
 
-  // Click the Search button
   await page.locator('.ssrcss-j5h0mc-Button.eoocusk1').click();
 
-  // Wait for navigation
   await page.waitForLoadState('networkidle');
 });
 
 Then('I should see at least {int} relevant results', async (minCount: number) => {
-  // Get all headline elements
+  
   const results = page.locator('p.ssrcss-1b1mki6-PromoHeadline.exn3ah99');
   const count = await results.count();
 
@@ -37,7 +34,6 @@ Then('I should see at least {int} relevant results', async (minCount: number) =>
     const text = await results.nth(i).innerText();
     const lowerText = text.toLowerCase();
 
-    // Check if all keywords are present in any order
     if (
       lowerText.includes('sport') &&
       lowerText.includes('2023') &&
@@ -46,8 +42,6 @@ Then('I should see at least {int} relevant results', async (minCount: number) =>
       relevantCount++;
     }
   }
-
-  console.log(`Found ${relevantCount} relevant results`);
 
   expect(relevantCount).toBeGreaterThanOrEqual(minCount);
 
