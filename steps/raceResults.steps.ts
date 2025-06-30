@@ -7,7 +7,7 @@ let context: BrowserContext;
 let page: Page;
 
 Given('I open the BBC Sport homepage', async () => {
-  browser = await chromium.launch({ headless: true }); // Set to true for CI
+  browser = await chromium.launch({ headless: true });
   context = await browser.newContext();
   page = await context.newPage();
   await page.goto('https://www.bbc.com/sport');
@@ -39,6 +39,5 @@ Then('I should see George Russell in 2nd place', async () => {
 Then('I should see Sergio Perez in 3rd place', async () => {
   const row = await page.locator('tr', { hasText: 'Sergio Perez' }).first().innerText();
   expect(row).toMatch(/3\s+Sergio Perez/);
-
   await browser.close();
 });
