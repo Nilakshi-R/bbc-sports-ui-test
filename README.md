@@ -23,7 +23,7 @@ The following criteria are validated by the tests:
    git clone [https://github.com/Nilakshi-R/bbc-sports-ui-test.git](https://github.com/Nilakshi-R/bbc-sports-ui-test.git)
 2. cd bbc-sports-ui-test
 3. npm install
-4. npx playwright install
+4. npm playwright install
 
 ---
 
